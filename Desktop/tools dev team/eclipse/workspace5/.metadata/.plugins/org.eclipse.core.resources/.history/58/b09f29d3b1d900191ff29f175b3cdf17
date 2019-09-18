@@ -1,0 +1,39 @@
+package com.eam.megainventario.inventario.service.impl;
+
+import javax.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eam.megainventario.inventario.controller.exception.EntityAlreadyExistsException;
+import com.eam.megainventario.inventario.controller.exception.UnvalidEntryException;
+import com.eam.megainventario.inventario.entity.Cliente;
+import com.eam.megainventario.inventario.entity.Sucursal;
+import com.eam.megainventario.inventario.repository.ClienteRepository;
+import com.eam.megainventario.inventario.repository.SucursalRepository;
+import com.eam.megainventario.inventario.service.ClienteService;
+import com.eam.megainventario.inventario.service.SucursalService;
+
+@Service
+public class SucursalServiceImpl implements SucursalService {
+	@Autowired
+	private SucursalRepository sucursalRepository;
+	
+	@Override
+	public Sucursal crearSucursal(Sucursal sucursal) {
+		if (sucursal.getNombre() == null)
+			return null;
+		try {
+			sucursalRepository.save(sucursal);
+				
+				return sucursal;
+			
+		} catch (EntityAlreadyExistsException e) {
+			throw new EntityAlreadyExistsException("Entidad producto ya existe", "406");
+		} catch (UnvalidEntryException e) {
+			throw new UnvalidEntryException("Entradas no válidas", "404");
+		}
+	}
+
+	
+}

@@ -1,0 +1,19 @@
+package com.eam.megainventario.inventario.service.impl;
+
+import java.util.Date;
+
+import javax.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eam.megainventario.inventario.entity.Cliente;
+import com.eam.megainventario.inventario.entity.Salida;
+import com.eam.megainventario.inventario.repository.SalidaRepository;
+import com.eam.megainventario.inventario.service.ClienteService;
+import com.eam.megainventario.inventario.service.SalidaService;
+
+@Service
+public class SalidaServiceImpl implements SalidaService {
+
+}

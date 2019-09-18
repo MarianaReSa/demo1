@@ -1,0 +1,5 @@
+package com.eam.megainventario.inventario.controller;
+
+public class SucursalController {
+
+}

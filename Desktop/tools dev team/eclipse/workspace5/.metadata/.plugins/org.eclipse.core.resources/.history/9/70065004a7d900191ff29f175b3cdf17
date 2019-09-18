@@ -1,0 +1,15 @@
+package com.eam.megainventario.inventario.service;
+import com.eam.megainventario.inventario.entity.*;
+import com.eam.megainventario.inventario.entity.Cliente;
+
+public interface SucursalService {
+
+	public abstract Cliente buscarClientePorId(Integer id);
+	
+	public abstract int crearCliente(Cliente cliente);
+	
+	public default boolean crearCliente2(String id, String nombre,String estado) {
+		Cliente cliente = new cliente( Integer.parseInt(id),nombre,estado);
+		return ClienteRepository.crearCliente(cliente);
+	}
+}

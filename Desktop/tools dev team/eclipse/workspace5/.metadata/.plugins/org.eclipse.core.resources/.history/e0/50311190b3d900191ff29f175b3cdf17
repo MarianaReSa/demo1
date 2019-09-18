@@ -1,0 +1,44 @@
+package com.eam.megainventario.inventario.service.impl;
+
+import java.util.Date;
+
+import javax.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eam.megainventario.inventario.entity.Cliente;
+import com.eam.megainventario.inventario.entity.Salida;
+import com.eam.megainventario.inventario.repository.SalidaRepository;
+import com.eam.megainventario.inventario.service.ClienteService;
+import com.eam.megainventario.inventario.service.SalidaService;
+
+@Service
+public class SalidaServiceImpl implements SalidaService {
+
+	@Autowired
+	private SalidaRepository salidarepository;
+
+	@Autowired
+	private ClienteService clienteservice;
+
+	@Override
+	public Salida crearSalida(String idCliente) throws EntityNotFoundException, NumberFormatException {
+		Integer clienteId = null ;
+
+		try {
+			clienteId = Integer.parseInt(idCliente);
+		}catch (NumberFormatException e) {
+			throw new  NumberFormatException("El ID del cliente tiene que ser valor numerico");
+		}
+		Cliente cliente = this.clienteservice.buscarClientePorId(clienteId);
+		if(cliente == null) {
+			throw new EntityNotFoundException("No se encontro el cliente");
+		}
+		Date date = new Date ();
+		Salida salida = new Salida(new java.sql.Date(date.getTime()), 0 , cliente);
+		
+		return this.salidarepository.save(salida);
+	}
+
+}

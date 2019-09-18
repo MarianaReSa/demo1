@@ -1,0 +1,5 @@
+package com.eam.megainventario.inventario.controller.exception;
+
+public class CamposException {
+
+}

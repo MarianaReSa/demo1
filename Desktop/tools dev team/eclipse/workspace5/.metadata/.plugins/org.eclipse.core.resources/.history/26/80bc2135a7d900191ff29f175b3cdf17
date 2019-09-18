@@ -1,0 +1,6 @@
+package com.eam.megainventario.inventario.repository;
+
+public class SucursalRespository {
+	
+
+}
